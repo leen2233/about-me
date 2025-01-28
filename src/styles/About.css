@@ -1,0 +1,614 @@
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #2196f3;
+  animation: growLine 1s ease-out forwards;
+}
+
+.experience-item {
+  position: relative;
+  margin-left: 50px;
+  padding: 20px;
+  background: rgba(33, 150, 243, 0.1);
+  border-radius: 8px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -35px;
+  top: 28px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2196f3;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.2);
+}
+
+.experience-item.current {
+  border-left: 4px solid #2196f3;
+}
+
+.tag {
+  font-size: 0.8em;
+  padding: 3px 8px;
+  border-radius: 12px;
+  background: #2196f3;
+  color: white;
+  margin-right: 10px;
+}
+
+.date {
+  float: right;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.experience-details {
+  margin-top: 15px;
+  white-space: pre-line;
+}
+
+@keyframes growLine {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.experience-item:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.experience-item:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.experience-item:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.experience-item:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+.experience-flow {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.experience-container {
+  position: relative;
+  margin-bottom: 30px;
+  opacity: 0;
+  animation: fadeSlideIn 0.8s ease forwards;
+}
+
+.experience-connector {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #2196f3 0%, #4caf50 100%);
+  transform-origin: top;
+  animation: growConnector 1s ease forwards;
+}
+
+.experience-content {
+  background: rgba(33, 150, 243, 0.05);
+  border-radius: 12px;
+  padding: 25px;
+  margin-left: 60px;
+  border-left: 4px solid #2196f3;
+  transition: all 0.3s ease;
+}
+
+.experience-content:hover {
+  transform: translateX(10px);
+  background: rgba(33, 150, 243, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.date-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  background: #2196f3;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9em;
+  margin: 10px 0;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #4caf50;
+  color: white;
+  border-radius: 15px;
+  font-size: 0.8em;
+  margin-left: 10px;
+}
+
+.experience-details {
+  margin-top: 15px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes growConnector {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Staggered animation delays */
+.experience-container:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.experience-container:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.experience-container:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.experience-container:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+/* Hover effects for interactive elements */
+.experience-content h3 {
+  color: #1976d2;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.experience-content:hover h3 {
+  color: #2196f3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .experience-content {
+    margin-left: 30px;
+  }
+
+  .experience-connector {
+    left: 20px;
+  }
+}
+
+/* Command Line Styles */
+.command-section {
+  padding: 12px 15px;
+  margin: 15px 0;
+  font-size: 0.9em;
+
+  font-family: "Fira Code", monospace;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+.prompt {
+  color: #4caf50;
+  margin-right: 10px;
+}
+
+.command-text {
+  color: #fff;
+}
+
+/* Experience Timeline Styles */
+.career-path {
+  position: relative;
+  max-width: 800px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.experience-step {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 50px;
+  opacity: 0;
+  animation: stepAppear 0.5s ease-out forwards;
+}
+
+/* Update the connecting lines positioning and length */
+.experience-step::after {
+  content: "";
+  position: absolute;
+  left: 62px; /* Center align with the dot (11px + 20px/2) */
+  top: 50px; /* Start a bit lower from the dot */
+  width: 3px;
+  height: calc(100% + 10px); /* Make line shorter */
+  background-color: #ff4444;
+}
+
+.experience-step:last-child::after {
+  display: none; /* Remove connector for last item */
+}
+
+.experience-step.current::after {
+  background-color: #4caf50;
+}
+
+/* Update dot positioning for better alignment */
+.step-marker {
+  position: absolute;
+  /* left: 9px; */
+  top: 30px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  z-index: 2;
+}
+
+.experience-step.current .step-marker {
+  background: #4caf50;
+  box-shadow: 0 0 0 3px #4caf50;
+  animation: pulseGreen 2s infinite;
+}
+
+.experience-step.past .step-marker {
+  background: #ff4444;
+  box-shadow: 0 0 0 3px #ff4444;
+}
+
+.experience-content {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  border-left: 4px solid;
+  transition: transform 0.3s ease;
+}
+
+.experience-content:hover {
+  transform: translateX(10px);
+}
+
+.experience-step.current .experience-content {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.05);
+}
+
+.experience-step.past .experience-content {
+  border-color: #ff4444;
+  background: rgba(255, 68, 68, 0.05);
+}
+
+.experience-step h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.work-type {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-right: 5px;
+}
+
+.current .work-type {
+  background: #4caf50;
+  color: white;
+}
+
+.past .work-type {
+  background: #ff4444;
+  color: white;
+}
+
+.duration {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.9em;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.role-details {
+  margin-top: 15px;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Animations */
+@keyframes stepAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGreen {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+  }
+}
+
+/* Animation Delays */
+.experience-step:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.experience-step:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.experience-step:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.experience-step:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .career-path {
+    padding: 10px 5px;
+  }
+
+  .experience-step {
+    padding-left: 35px;
+    margin-bottom: 20px;
+  }
+
+  .experience-content {
+    padding: 15px;
+    margin-left: 15px;
+  }
+
+  .experience-step h3 {
+    font-size: 1em;
+  }
+
+  .work-type {
+    font-size: 0.75em;
+    padding: 2px 8px;
+  }
+
+  .duration {
+    font-size: 0.8em;
+  }
+
+  .role-details {
+    font-size: 0.85em;
+    line-height: 1.4;
+  }
+
+  /* Adjust timeline elements */
+  .step-marker {
+    width: 15px;
+    height: 15px;
+    left: 5px;
+  }
+
+  .experience-step::after {
+    left: 11px;
+    width: 2px;
+  }
+
+  /* Skills section adjustments */
+  .skills-container {
+    padding: 15px 10px;
+    margin: 15px auto;
+  }
+
+  .skills-category-title {
+    font-size: 1em;
+  }
+
+  .skills-list {
+    padding-left: 15px;
+    gap: 8px;
+  }
+
+  .skill-item {
+    font-size: 0.8em;
+    padding: 4px 10px;
+  }
+}
+
+/* Small phone adjustments */
+@media (max-width: 480px) {
+  .command-section {
+    padding: 10px;
+    font-size: 0.8em;
+  }
+
+  .experience-step {
+    padding-left: 30px;
+  }
+
+  .experience-content {
+    padding: 12px;
+    margin-left: 10px;
+  }
+
+  .role-details {
+    font-size: 0.8em;
+  }
+
+  .step-marker::before {
+    font-size: 0.7em;
+    right: 20px;
+  }
+
+  .skills-category-title {
+    font-size: 0.9em;
+  }
+
+  .skill-item {
+    font-size: 0.75em;
+    padding: 3px 8px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 320px) {
+  .command-section {
+    font-size: 0.75em;
+  }
+
+  .experience-step h3 {
+    font-size: 0.9em;
+  }
+
+  .role-details {
+    font-size: 0.75em;
+  }
+}
+
+/* Add new styles for date markers */
+.step-marker::before {
+  content: attr(data-date);
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* Skills Section Styles */
+.skills-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--terminal-bg);
+  border-radius: 8px;
+  font-family: "Fira Code", monospace;
+}
+
+.skills-category {
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: skillsFadeIn 0.5s ease-out forwards;
+}
+
+.skills-category-title {
+  color: #50fa7b;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.skills-category-title::before {
+  content: "→";
+  margin-right: 10px;
+  color: #50fa7b;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-left: 25px;
+}
+
+.skill-item {
+  background-color: #44475a;
+  padding: 5px 12px;
+  border-radius: 15px;
+  color: #f8f8f2;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  border: 1px solid #6272a4;
+}
+
+.skill-item:hover {
+  background-color: #6272a4;
+  transform: translateY(-2px);
+  border-color: #8be9fd;
+  color: #f8f8f2;
+}
+
+@keyframes skillsFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation delays for categories */
+.skills-category:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.skills-category:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.skills-category:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.skills-category:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+/* Responsive adjustments for skills section */
+@media (max-width: 768px) {
+  .skills-container {
+    padding: 15px;
+  }
+
+  .skills-list {
+    padding-left: 15px;
+  }
+
+  .skill-item {
+    font-size: 0.85em;
+  }
+}
