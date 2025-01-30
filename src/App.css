@@ -527,6 +527,9 @@ body {
   padding: 15px;
   background: rgba(38, 38, 38, 0.4);
   border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .details-text {
@@ -536,6 +539,10 @@ body {
   color: #d4d4d4;
   line-height: 1.5;
   text-align: left;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .details-text h1,
@@ -574,8 +581,10 @@ body {
   background: rgba(38, 38, 38, 0.6);
   padding: 1em;
   border-radius: 4px;
-  overflow-x: auto;
   margin: 1em 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .details-text pre code {
@@ -611,4 +620,165 @@ body {
   margin: 1em 0;
   padding-left: 1em;
   color: #a8a8a8;
+}
+
+/* Add these responsive styles */
+@media (max-width: 768px) {
+  .project-entry {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "status date"
+      "name name"
+      "desc desc";
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .project-status {
+    grid-area: status;
+  }
+
+  .project-date {
+    grid-area: date;
+    text-align: right;
+  }
+
+  .project-name {
+    grid-area: name;
+  }
+
+  .project-description {
+    grid-area: desc;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .view-details {
+    align-self: flex-start;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .details-text {
+    font-size: 0.85em;
+  }
+
+  .details-text pre {
+    padding: 0.8em;
+    font-size: 0.9em;
+    max-width: calc(100vw - 60px);
+  }
+
+  .details-text code {
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-entry {
+    gap: 6px;
+    padding: 10px 0;
+  }
+
+  .project-status,
+  .project-date,
+  .project-name a {
+    font-size: 0.9em;
+  }
+
+  .project-description {
+    font-size: 0.85em;
+  }
+
+  .view-details {
+    font-size: 0.85em;
+  }
+
+  .details-text {
+    font-size: 0.8em;
+  }
+
+  .details-text h1 {
+    font-size: 1.4em;
+  }
+
+  .details-text h2 {
+    font-size: 1.2em;
+  }
+
+  .details-text h3 {
+    font-size: 1.1em;
+  }
+
+  .details-text pre {
+    padding: 0.6em;
+    font-size: 0.85em;
+    max-width: calc(100vw - 40px);
+  }
+
+  .details-text ul {
+    padding-left: 0.8em;
+  }
+
+  .details-text ul li::before {
+    left: -0.8em;
+  }
+}
+
+/* Add styles for better code block scrolling on mobile */
+.details-text pre {
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+}
+
+.details-text pre code {
+  white-space: pre;
+  word-wrap: normal;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve touch targets */
+.project-name a,
+.view-details {
+  padding: 4px 0;
+}
+
+@media (hover: none) {
+  .project-name a,
+  .view-details {
+    padding: 8px 0;
+  }
+}
+
+/* Ensure inline code blocks don't overflow */
+.details-text p code {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/* Improve table responsiveness if your markdown includes tables */
+.details-text table {
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+  margin: 1em 0;
+}
+
+.details-text td,
+.details-text th {
+  padding: 6px 8px;
+  border: 1px solid #2a2a2a;
+}
+
+@media (max-width: 360px) {
+  .details-text {
+    font-size: 0.75em;
+  }
+
+  .details-text pre {
+    padding: 0.5em;
+    max-width: calc(100vw - 30px);
+  }
 }

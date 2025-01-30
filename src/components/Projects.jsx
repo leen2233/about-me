@@ -96,42 +96,11 @@ My personal dotfiles for development environment setup and customization.
 - Git configurations and aliases
 - ZSH with custom themes and plugins
 
-### 📜 Shell Scripts
-- \`setup.sh\`: Automated environment setup
-- \`update.sh\`: System update automation
-- \`backup.sh\`: Configuration backup utility
-- Custom utility scripts and aliases
-
 ### ⚙️ Configurations
 - Terminal emulator settings
 - Development tool preferences
 - System customizations
 - Color schemes and themes
-
-## 🚀 Installation
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/leen2233/dotfiles.git ~/.dotfiles
-
-# Run the setup script
-cd ~/.dotfiles
-./setup.sh
-\`\`\`
-
-## 📝 Usage
-
-### Basic Commands
-\`\`\`bash
-# Update configurations
-./update.sh
-
-# Backup current settings
-./backup.sh
-
-# Apply specific configuration
-./apply.sh vim  # Apply only Vim settings
-\`\`\`
 
 ## 🔄 Updates
 Actively maintained and regularly updated with new configurations and improvements.
@@ -257,23 +226,6 @@ A full-stack movie platform consisting of a Django-powered backend and React Nat
 - Role-based access control
 - Session management
 
-### Backend Installation
-
-\`\`\`bash
-# Clone the backend repository
-git clone https://github.com/leen2233/flickture.git
-
-# Setup virtual environment
-python -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run migrations
-python manage.py migrate
-\`\`\`
-
 ## 📱 Mobile App (React Native)
 
 ### User Interface
@@ -297,20 +249,6 @@ python manage.py migrate
 - React Navigation
 - Axios
 - AsyncStorage
-
-### Mobile Installation
-
-\`\`\`bash
-# Clone the mobile repository
-git clone https://github.com/leen2233/flickture-mobile.git
-
-# Install dependencies
-npm install
-
-# Run for iOS/Android
-npm run ios     # For iOS
-npm run android # For Android
-\`\`\`
 
 ## 📋 System Requirements
 
