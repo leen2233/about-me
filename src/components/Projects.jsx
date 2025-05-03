@@ -9,7 +9,7 @@ function Projects() {
     {
       name: "hey-py",
       status: "completed",
-      date: "Feb 15 2024",
+      date: "Oct 20 2024",
       url: "https://github.com/leen2233/hey-py",
       description:
         "A command-line interface for DuckDuckGo's AI Chat. Built with Python to provide an easy-to-use CLI for AI interactions.",
@@ -114,7 +114,7 @@ Actively maintained and regularly updated with new configurations and improvemen
     {
       name: "pm2py",
       status: "completed",
-      date: "Dec 10 2023",
+      date: "Aug 10 2024",
       url: "https://github.com/leen2233/pm2py",
       description:
         "A Python implementation of PM2's programmatic API. Fork of the original project with additional improvements and features.",
@@ -196,83 +196,78 @@ MIT License`,
     {
       name: "flickture",
       status: "running",
-      date: "Mar 15 2024",
+      date: "Jan 1 2025",
       url: "https://github.com/leen2233/flickture",
+      live: "https://flickture.leen2233.me",
       description:
-        "A comprehensive movie platform with Django backend and React Native mobile app for seamless movie browsing and management.",
+        "A comprehensive cross-platform movie platform with web app, mobile apps, and Django backend for seamless movie browsing and management.",
       details: `# Flickture
 
-A full-stack movie platform consisting of a Django-powered backend and React Native mobile application, providing a complete solution for movie browsing and management.
+🌐 **Try it now:** [flickture.leen2233.me](https://flickture.leen2233.me)
 
-## 🎬 Backend (Django)
+Flickture is a comprehensive cross-platform movie platform that provides a seamless experience for movie enthusiasts across web and mobile devices. Built with modern technologies, it offers full feature parity between web and mobile applications.
 
-### Core Features
-- User authentication and authorization
-- Movie browsing and searching
-- Detailed movie information
-- User reviews and ratings
-- Watchlist management
+## 🔗 Cross-Platform Access
+- 💻 [Web App](https://flickture.leen2233.me)
+- 📱 Mobile Apps (iOS & Android)
+- 🔄 Synced experience across all devices
 
-### Technical Stack
-- Django REST framework API
-- PostgreSQL database
-- Celery task queue integration
-- Redis caching
-- Docker containerization
-
-### Authentication & Security
-- JWT-based authentication
-- Social media login integration
-- Role-based access control
-- Session management
-
-## 📱 Mobile App (React Native)
-
-### User Interface
-- Intuitive movie browsing
-- Smooth animations
-- Cross-platform compatibility
-- Dark/Light theme support
-- Responsive design
-
-### Mobile Features
-- Offline support
-- Local data caching
-- Background sync
-- Image optimization
-- State management with Redux
-
-### Mobile Tech Stack
-- React Native
-- TypeScript
-- Redux Toolkit
-- React Navigation
-- Axios
-- AsyncStorage
-
-## 📋 System Requirements
-
-### Backend Requirements
-- Python 3.8+
-- PostgreSQL
-- Redis
-- Celery
-
-### Mobile Requirements
-- Node.js 14+
-- React Native CLI
-- Xcode (for iOS)
-- Android Studio (for Android)
-
-## 🔄 Development Status
-Both backend and mobile applications are under active development with regular updates and feature additions.
-
-## 📝 Links
+## 🔗 Project Links
+- [Web Application](https://flickture.leen2233.me)
 - [Backend Repository](https://github.com/leen2233/flickture)
+- [Web Repository](https://github.com/leen2233/flickture-web)
 - [Mobile Repository](https://github.com/leen2233/flickture-mobile)
 
-## 📝 License
-MIT License`,
+## ✨ Features
+
+### 🎬 Movie Discovery & Information
+- Browse trending, popular, top-rated, and upcoming movies
+- Advanced search functionality with filters by genre
+- Detailed movie information including plot, cast, ratings, and runtime
+- View movie collections and related content
+- Explore artist/cast member profiles and filmographies
+
+### 📱 Personal Movie Management
+- Create and maintain custom movie lists
+- Track movies with watchlist functionality
+- Mark movies as watched
+- Rate and review movies
+- Add movies to favorites
+- Share movies with friends
+
+### 👥 Social Features
+- User profiles with movie statistics
+- Follow other users
+- View activity feed of followed users
+- Like and comment on movies
+- Share custom movie lists
+- Community movie lists and staff picks
+
+### 🛠️ Platform Features
+- Responsive web design
+- Progressive Web App (PWA) support
+- Native mobile apps for iOS and Android
+- Dark/Light theme across all platforms
+- Offline support
+- Cross-device synchronization
+
+## 🔧 Technical Stack
+### Web
+- React
+- Next.js
+- TailwindCSS
+- Redux Toolkit
+
+### Mobile
+- React Native
+- React Navigation
+- GlueStack UI
+- Native features integration
+
+### Backend
+- Django REST Framework
+- PostgreSQL
+- Redis`,
     },
   ];
 
@@ -285,8 +280,8 @@ MIT License`,
   };
 
   return (
-    <>
-      <div className="command-section">
+    <main>
+      <section className="command-section">
         <span className="prompt">$ </span>
         <TypeAnimation
           sequence={["ls -l ~/projects/"]}
@@ -295,39 +290,81 @@ MIT License`,
           className="command-text"
           cursor={false}
         />
-      </div>
+      </section>
 
-      <div className="content-section projects animate-fade-in">
-        <div className="terminal-output">
+      <section className="content-section projects animate-fade-in">
+        <div
+          className="terminal-output"
+          itemScope
+          itemType="http://schema.org/CollectionPage"
+        >
+          <meta itemProp="name" content="Portfolio Projects" />
+          <meta
+            itemProp="description"
+            content="Collection of software development projects by Rejebov Arslan"
+          />
+
           {projects.map((project) => (
-            <div className="project-entry" key={project.name}>
+            <article
+              className="project-entry"
+              key={project.name}
+              itemScope
+              itemType="http://schema.org/SoftwareSourceCode"
+            >
+              <meta
+                itemProp="programmingLanguage"
+                content="Python, JavaScript, React"
+              />
+              <meta itemProp="author" content="Rejebov Arslan" />
+
               <span className={`project-status ${project.status}`}>
                 [{project.status}]
               </span>
-              <span className="project-date">{project.date}</span>
+              <span className="project-date" itemProp="dateCreated">
+                {project.date}
+              </span>
               <span className="project-name">
-                <a href={project.url} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="codeRepository"
+                >
                   {project.name}
                 </a>
               </span>
               <span className="project-description">
-                {project.description}
+                {project.live && (
+                  <div>
+                    <a
+                      href={project.live}
+                      itemProp="url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {project.live}
+                    </a>
+                  </div>
+                )}
+                <span itemProp="description">{project.description}</span>
                 <button
                   className={`view-details ${
                     selectedProject?.name === project.name ? "active" : ""
                   }`}
                   onClick={() => toggleDetails(project)}
+                  aria-expanded={selectedProject?.name === project.name}
+                  aria-controls={`details-${project.name}`}
                 >
                   [{selectedProject?.name === project.name ? "close" : "view"}{" "}
                   details]
                 </button>
               </span>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="command-section">
+      <section className="command-section">
         <span className="prompt">$ </span>
         <TypeAnimation
           key={selectedProject ? selectedProject.name : "default"}
@@ -341,16 +378,34 @@ MIT License`,
           className="command-text"
           cursor={false}
         />
-      </div>
+      </section>
 
       {selectedProject && (
-        <div className="content-section project-details animate-fade-in">
-          <ReactMarkdown className="details-text">
+        <section
+          className="content-section project-details animate-fade-in"
+          id={`details-${selectedProject.name}`}
+          aria-label={`Details for ${selectedProject.name}`}
+        >
+          <ReactMarkdown
+            className="details-text"
+            components={{
+              h1: ({ node, ...props }) => <h1 itemProp="name" {...props} />,
+              p: ({ node, ...props }) => <p itemProp="text" {...props} />,
+              a: ({ node, ...props }) => (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  itemProp="url"
+                  {...props}
+                />
+              ),
+            }}
+          >
             {selectedProject.details}
           </ReactMarkdown>
-        </div>
+        </section>
       )}
-    </>
+    </main>
   );
 }
 
