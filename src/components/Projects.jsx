@@ -195,7 +195,7 @@ MIT License`,
     },
     {
       name: "flickture",
-      status: "running",
+      status: "completed",
       date: "Jan 1 2025",
       url: "https://github.com/leen2233/flickture",
       live: "https://flickture.leen2233.me",
@@ -268,6 +268,17 @@ Flickture is a comprehensive cross-platform movie platform that provides a seaml
 - Django REST Framework
 - PostgreSQL
 - Redis`,
+    },
+    {
+      name: "veia",
+      status: "running",
+      date: "May 5 2025",
+      url: "https://github.com/leen2233/veia-backend",
+      // live: "https://flickture.leen2233.me",
+      description:
+        "Veia is curently under development and will be available soon.",
+      details: `# Veia
+Veia is curently under development and will be available soon.`,
     },
   ];
 
