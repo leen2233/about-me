@@ -274,11 +274,18 @@ Flickture is a comprehensive cross-platform movie platform that provides a seaml
       status: "running",
       date: "May 5 2025",
       url: "https://github.com/leen2233/veia-backend",
-      // live: "https://flickture.leen2233.me",
       description:
-        "Veia is curently under development and will be available soon.",
+        "A modern chat application in its early stage, featuring backend, Android, and desktop client repositories.",
       details: `# Veia
-Veia is curently under development and will be available soon.`,
+    
+Veia is a modern chat application currently in active development.
+
+## 🔗 Project Links
+- [Backend Repository](https://github.com/leen2233/veia-backend)
+- [Mobile App Repository](https://github.com/leen2233/veia-mobile)
+- [Desktop App Repository](https://github.com/leen2233/veia-desktop)
+
+More features and details coming soon.`,
     },
   ];
 
