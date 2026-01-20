@@ -3,14 +3,45 @@
 import { useState, useEffect } from 'react';
 import TerminalNav from '@/components/TerminalNav';
 import TerminalCard from '@/components/TerminalCard';
-import { projects } from '@/lib/data';
-import { Metadata } from 'next';
+
+interface Project {
+  id: string;
+  name: string;
+  status: 'completed' | 'running';
+  date: string;
+  url: string;
+  live?: string;
+  description: string;
+  features?: string[];
+  repos?: string[];
+}
 
 export default function ProjectsPage() {
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch projects from API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await fetch('/api/projects');
+        const data = await res.json();
+        setProjects(data.projects || []);
+      } catch (error) {
+        console.error('Failed to fetch projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   // Handle URL hash for direct project links
   useEffect(() => {
+    if (projects.length === 0) return;
+
     const hash = window.location.hash.slice(1);
     if (hash) {
       const project = projects.find((p) => p.id === hash);
@@ -22,7 +53,7 @@ export default function ProjectsPage() {
         }, 100);
       }
     }
-  }, []);
+  }, [projects]);
 
   return (
     <div className="crt-screen min-h-screen w-full bg-terminal-bg">
@@ -42,7 +73,10 @@ export default function ProjectsPage() {
           </div>
 
           {/* Project List */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          {loading ? (
+            <div className="text-dim">Loading projects...</div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {projects.map((project) => (
               <div
                 key={project.id}
@@ -91,7 +125,8 @@ export default function ProjectsPage() {
                 </div>
               </div>
             ))}
-          </div>
+            </div>
+          )}
 
           {/* Project Detail */}
           {selectedProject && (

@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import TerminalNav from '@/components/TerminalNav';
 import TerminalCard from '@/components/TerminalCard';
-import { personal, projects } from '@/lib/data';
+import { personal } from '@/lib/data';
+import { projectDb } from '@/lib/db';
 
-export default function Home() {
+export default async function Home() {
+  const projects = projectDb.getAll();
   return (
     <div className="crt-screen min-h-screen w-full bg-terminal-bg">
       <div className="scanline"></div>
@@ -142,18 +144,6 @@ export default function Home() {
                 <div className="text-terminal-green mt-1">{personal.contact.phone}</div>
               </div>
             </div>
-          </div>
-
-          {/* Footer */}
-          <div className="mt-16 pt-8 border-t border-terminal-green-dim text-center text-dim text-sm">
-            <p>
-              Built with Next.js + TypeScript + Tailwind CSS
-            </p>
-            <p className="mt-2">
-              <Link href="/admin/blog" className="text-dim hover:text-terminal-green">
-                [Admin]
-              </Link>
-            </p>
           </div>
         </div>
       </div>

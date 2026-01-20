@@ -108,11 +108,6 @@ export default function LoginPage() {
               ← Back to home
             </Link>
           </div>
-
-          {/* Info about default credentials */}
-          <div className="mt-4 text-center text-dim text-xs">
-            <p>Default: admin / admin123</p>
-          </div>
         </div>
       </div>
     </div>

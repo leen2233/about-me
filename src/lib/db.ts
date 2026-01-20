@@ -53,6 +53,23 @@ db.exec(`
   CREATE INDEX IF NOT EXISTS idx_posts_created_at ON posts(created_at DESC);
   CREATE INDEX IF NOT EXISTS idx_comments_post_id ON comments(post_id);
   CREATE INDEX IF NOT EXISTS idx_comments_created_at ON comments(created_at DESC);
+
+  CREATE TABLE IF NOT EXISTS projects (
+    id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'running',
+    date TEXT NOT NULL,
+    url TEXT NOT NULL,
+    live TEXT,
+    description TEXT NOT NULL,
+    features TEXT,
+    repos TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_projects_status ON projects(status);
+  CREATE INDEX IF NOT EXISTS idx_projects_created_at ON projects(created_at DESC);
 `);
 
 export interface BlogPost {
@@ -263,6 +280,143 @@ export const commentDb = {
     const stmt = db.prepare('SELECT COUNT(*) as count FROM comments WHERE post_id = ?');
     const result = stmt.get(postId) as { count: number };
     return result.count;
+  },
+};
+
+// Project interfaces
+export interface Project {
+  id: string;
+  name: string;
+  status: 'completed' | 'running';
+  date: string;
+  url: string;
+  live?: string;
+  description: string;
+  features?: string[];
+  repos?: string[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface NewProject {
+  id: string;
+  name: string;
+  status?: 'completed' | 'running';
+  date: string;
+  url: string;
+  live?: string;
+  description: string;
+  features?: string[];
+  repos?: string[];
+}
+
+// Project operations
+export const projectDb = {
+  // Get all projects
+  getAll: (): Project[] => {
+    const stmt = db.prepare(`
+      SELECT id, name, status, date, url, live, description, features, repos, created_at, updated_at
+      FROM projects
+      ORDER BY date DESC
+    `);
+    const rows = stmt.all() as any[];
+    return rows.map(row => ({
+      ...row,
+      features: row.features ? JSON.parse(row.features) : undefined,
+      repos: row.repos ? JSON.parse(row.repos) : undefined,
+    }));
+  },
+
+  // Get project by ID
+  getById: (id: string): Project | undefined => {
+    const stmt = db.prepare(`
+      SELECT id, name, status, date, url, live, description, features, repos, created_at, updated_at
+      FROM projects
+      WHERE id = ?
+    `);
+    const row = stmt.get(id) as any;
+    if (!row) return undefined;
+    return {
+      ...row,
+      features: row.features ? JSON.parse(row.features) : undefined,
+      repos: row.repos ? JSON.parse(row.repos) : undefined,
+    };
+  },
+
+  // Create new project
+  create: (project: NewProject): Project => {
+    const stmt = db.prepare(`
+      INSERT INTO projects (id, name, status, date, url, live, description, features, repos)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    stmt.run(
+      project.id,
+      project.name,
+      project.status || 'running',
+      project.date,
+      project.url,
+      project.live ?? null,
+      project.description,
+      project.features ? JSON.stringify(project.features) : null,
+      project.repos ? JSON.stringify(project.repos) : null
+    );
+    return projectDb.getById(project.id)!;
+  },
+
+  // Update project
+  update: (id: string, project: Partial<NewProject>): boolean => {
+    const fields: string[] = [];
+    const values: any[] = [];
+
+    if (project.name !== undefined) {
+      fields.push('name = ?');
+      values.push(project.name);
+    }
+    if (project.status !== undefined) {
+      fields.push('status = ?');
+      values.push(project.status);
+    }
+    if (project.date !== undefined) {
+      fields.push('date = ?');
+      values.push(project.date);
+    }
+    if (project.url !== undefined) {
+      fields.push('url = ?');
+      values.push(project.url);
+    }
+    if (project.live !== undefined) {
+      fields.push('live = ?');
+      values.push(project.live);
+    }
+    if (project.description !== undefined) {
+      fields.push('description = ?');
+      values.push(project.description);
+    }
+    if (project.features !== undefined) {
+      fields.push('features = ?');
+      values.push(project.features ? JSON.stringify(project.features) : null);
+    }
+    if (project.repos !== undefined) {
+      fields.push('repos = ?');
+      values.push(project.repos ? JSON.stringify(project.repos) : null);
+    }
+
+    if (fields.length === 0) return false;
+
+    fields.push('updated_at = CURRENT_TIMESTAMP');
+    values.push(id);
+
+    const stmt = db.prepare(`UPDATE projects SET ${fields.join(', ')} WHERE id = ?`);
+    const result = stmt.run(...values);
+
+    return result.changes > 0;
+  },
+
+  // Delete project
+  delete: (id: string): boolean => {
+    const stmt = db.prepare('DELETE FROM projects WHERE id = ?');
+    const result = stmt.run(id);
+    return result.changes > 0;
   },
 };
 
