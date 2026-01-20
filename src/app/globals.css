@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+  --terminal-bg: #2d2d2d;
+  --terminal-green: #50fa7b;
+  --terminal-green-dim: #3fb950;
+  --terminal-amber: #ffb86c;
+  --terminal-blue: #8be9fd;
+  --terminal-red: #ff5555;
+  --terminal-fg: #f8f8f2;
+  --terminal-muted: #b8b8b8;
+  --terminal-border: #44475a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--terminal-bg);
+  color: var(--terminal-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CRT Screen Effects - minimal */
+.crt-screen {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Very subtle scanline overlay */
+.crt-screen::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Very subtle vignette */
+.crt-screen::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 90%,
+    rgba(0, 0, 0, 0.15) 100%
+  );
+  pointer-events: none;
+  z-index: 11;
+}
+
+.screen-curvature {
+  position: relative;
+  padding: 2rem;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Minimal scanline animation */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  z-index: 9;
+}
+
+/* Text glow effect - very subtle */
+.glow-text {
+  color: var(--terminal-green);
+  text-shadow: 0 0 8px rgba(80, 250, 123, 0.25);
+  font-weight: 600;
+}
+
+.glow-text-amber {
+  color: var(--terminal-amber);
+  text-shadow: 0 0 8px rgba(255, 184, 108, 0.25);
+  font-weight: 600;
+}
+
+.glow-text-blue {
+  color: var(--terminal-blue);
+  text-shadow: 0 0 8px rgba(139, 233, 253, 0.25);
+  font-weight: 600;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-green-dim);
+  border-radius: 6px;
+  border: 2px solid var(--terminal-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-green);
+}
+
+/* Cursor */
+.cursor {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background-color: var(--terminal-green);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/* Markdown content styling */
+.markdown-content {
+  color: var(--terminal-fg);
+  line-height: 1.8;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--terminal-green);
+  font-weight: 600;
+}
+
+.markdown-content h1 {
+  font-size: 1.75rem;
+  border-bottom: 2px solid var(--terminal-border);
+  padding-bottom: 0.5rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.5rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.25rem;
+}
+
+.markdown-content p {
+  margin-bottom: 1rem;
+  color: var(--terminal-fg);
+}
+
+.markdown-content a {
+  color: var(--terminal-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.markdown-content a:hover {
+  color: var(--terminal-green);
+}
+
+.markdown-content code {
+  background-color: rgba(80, 250, 123, 0.15);
+  color: var(--terminal-fg);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  border: 1px solid rgba(80, 250, 123, 0.3);
+}
+
+.markdown-content pre {
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--terminal-border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--terminal-fg);
+}
+
+.markdown-content li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid var(--terminal-green);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-bottom: 1rem;
+  color: var(--terminal-muted);
+  font-style: italic;
+}
+
+.markdown-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid var(--terminal-border);
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--terminal-fg);
+}
+
+.markdown-content th {
+  background-color: rgba(80, 250, 123, 0.15);
+  color: var(--terminal-green);
+  font-weight: 600;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--terminal-border);
+}
+
+/* Syntax highlighting overrides */
+.markdown-content .hljs {
+  background: transparent;
+  color: var(--terminal-fg);
+}
+
+.markdown-content .hljs-keyword {
+  color: var(--terminal-amber);
+}
+
+.markdown-content .hljs-string {
+  color: var(--terminal-green);
+}
+
+.markdown-content .hljs-comment {
+  color: var(--terminal-muted);
+}
+
+.markdown-content .hljs-function {
+  color: var(--terminal-blue);
+}
+
+.markdown-content .hljs-number {
+  color: var(--terminal-blue);
+}
+
+/* Comment markdown styling - slightly more compact */
+.markdown-content-comment {
+  font-size: 0.95em;
+}
+
+.markdown-content-comment p {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content-comment p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content-comment h1,
+.markdown-content-comment h2,
+.markdown-content-comment h3,
+.markdown-content-comment h4 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1em;
+}
+
+.markdown-content-comment h1 {
+  font-size: 1.25em;
+}
+
+.markdown-content-comment code {
+  font-size: 0.85em;
+}
+
+.markdown-content-comment pre {
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+}
+
+.markdown-content-comment ul,
+.markdown-content-comment ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Utility classes */
+.text-dim {
+  color: var(--terminal-muted);
+}
+
+.text-amber {
+  color: var(--terminal-amber);
+}
+
+.text-blue {
+  color: var(--terminal-blue);
+}
+
+.text-red {
+  color: var(--terminal-red);
+}
+
+.text-terminal-green {
+  color: var(--terminal-green);
+}
+
+.clickable {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.clickable:hover {
+  color: var(--terminal-green);
+}

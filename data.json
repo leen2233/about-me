@@ -1,0 +1,165 @@
+{
+  "personal": {
+    "name": "Rejebov Arslan",
+    "jobTitle": "Python/Django Developer",
+    "contact": {
+      "phone": "+86 155 2933 1571",
+      "email": "arslanrejepow223@gmail.com",
+      "github": "https://github.com/leen2233",
+      "website": "https://leen2233.me"
+    }
+  },
+  "workExperience": [
+    {
+      "company": "Galkyn Inc.",
+      "role": "Backend Developer",
+      "type": "Remote",
+      "duration": "May 2024–Current",
+      "description": [
+        "Built backend services for yolugry.com, ensuring scalability",
+        "Designed RESTful APIs for frontend/external integrations",
+        "Improved system responsiveness using Celery and Redis",
+        "Achieved 15% performance boost via database/architecture optimizations"
+      ]
+    },
+    {
+      "company": "Peydalan",
+      "role": "Full Stack Developer",
+      "type": "Hybrid",
+      "duration": "Sep 2023–May 2024",
+      "description": [
+        "Redesigned architecture for Peydalan.com.tm, improving performance and UX by 20%",
+        "Full-stack development with Django (backend) and React (frontend)",
+        "Reduced load times by 30% through query optimization"
+      ]
+    },
+    {
+      "company": "Gozle LLC",
+      "role": "Backend Developer",
+      "type": "Remote",
+      "duration": "Nov 2022–Sep 2023",
+      "description": [
+        "Developed high-availability services: Gozle Video, Gozle ID, and Gozle News",
+        "Focused on security and system reliability"
+      ]
+    },
+    {
+      "company": "Yakynyol",
+      "role": "Full Stack Developer",
+      "type": "On-site",
+      "duration": "Sep 2021–Nov 2022",
+      "description": [
+        "Enhanced client-side interfaces and backend systems for various projects"
+      ]
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "JavaScript"],
+    "frameworks": ["Django", "React", "React Native"],
+    "databases": ["PostgreSQL", "MySQL"],
+    "tools": ["Git", "Linux", "Celery", "Redis"],
+    "expertise": ["RESTful API Development", "System Architecture Design", "Asynchronous Task Management"]
+  },
+  "projects": [
+    {
+      "id": "hey-py",
+      "name": "hey-py",
+      "status": "completed",
+      "date": "Oct 20 2024",
+      "url": "https://github.com/leen2233/hey-py",
+      "description": "CLI for DuckDuckGo's AI Chat",
+      "features": [
+        "Multiple AI models support",
+        "Conversation memory",
+        "HTTP/SOCKS proxy support"
+      ]
+    },
+    {
+      "id": "dotfiles",
+      "name": "dotfiles",
+      "status": "completed",
+      "date": "Jan 20 2024",
+      "url": "https://github.com/leen2233/dotfiles",
+      "description": "Personal configuration files and shell scripts",
+      "features": [
+        "Neovim configuration",
+        "Tmux configuration",
+        "Git configuration",
+        "ZSH configuration"
+      ]
+    },
+    {
+      "id": "pm2py",
+      "name": "pm2py",
+      "status": "completed",
+      "date": "Aug 10 2024",
+      "url": "https://github.com/leen2233/pm2py",
+      "description": "Python implementation of PM2's programmatic API",
+      "features": [
+        "Process management",
+        "Monitoring capabilities",
+        "Log management"
+      ]
+    },
+    {
+      "id": "flickture",
+      "name": "flickture",
+      "status": "completed",
+      "date": "Jan 1 2025",
+      "url": "https://github.com/leen2233/flickture",
+      "live": "https://flickture.leen2233.me",
+      "description": "Cross-platform movie platform",
+      "features": [
+        "Web application",
+        "Mobile applications",
+        "Django backend",
+        "Social features"
+      ]
+    },
+    {
+      "id": "comixie",
+      "name": "comixie",
+      "status": "running",
+      "date": "Jun 23 2025",
+      "url": "https://github.com/leen2233/comixie-backend",
+      "live": "https://comixie.leen2233.me",
+      "description": "Comic reading website",
+      "features": [
+        "Comic discovery",
+        "Reading modes",
+        "PDF export",
+        "Progress tracking"
+      ]
+    },
+    {
+      "id": "veia",
+      "name": "veia",
+      "status": "running",
+      "date": "May 5 2025",
+      "url": "https://github.com/leen2233/veia-backend",
+      "description": "Modern chat application in development",
+      "repos": ["Backend", "Android", "Desktop client"]
+    }
+  ],
+  "seo": {
+    "metaDescription": "Rejebov Arslan - Python/Django Developer with expertise in backend development, RESTful APIs, and full-stack web applications",
+    "keywords": [
+      "Python Developer",
+      "Django Developer",
+      "Backend Developer",
+      "Full Stack Developer",
+      "RESTful API",
+      "Web Development",
+      "Software Engineer"
+    ],
+    "openGraph": {
+      "title": "Rejebov Arslan - Python/Django Developer",
+      "url": "https://leen2233.me"
+    },
+    "twitterCard": "summary"
+  },
+  "project": {
+    "name": "about-me",
+    "version": "0.0.0"
+  }
+}
