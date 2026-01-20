@@ -148,14 +148,16 @@ export default function ProjectsPage() {
                   <p className="text-dim">{selectedProject.description}</p>
                 </div>
 
-                <div>
-                  <div className="text-blue text-sm mb-2">Features</div>
-                  <ul className="list-disc list-inside text-dim text-sm space-y-1">
-                    {selectedProject.features.map((feature, i) => (
-                      <li key={i}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
+                {selectedProject.features && (
+                  <div>
+                    <div className="text-blue text-sm mb-2">Features</div>
+                    <ul className="list-disc list-inside text-dim text-sm space-y-1">
+                      {selectedProject.features.map((feature, i) => (
+                        <li key={i}>{feature}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {selectedProject.repos && (
                   <div className="mt-4">

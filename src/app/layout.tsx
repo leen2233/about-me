@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: data.seo.twitterCard,
+    card: data.seo.twitterCard as 'summary' | 'summary_large_image' | 'player' | 'app',
     title: data.seo.openGraph.title,
   },
 };
