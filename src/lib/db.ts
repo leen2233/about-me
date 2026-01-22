@@ -170,6 +170,10 @@ export const blogDb = {
     const fields: string[] = [];
     const values: any[] = [];
 
+    if (post.slug !== undefined) {
+      fields.push('slug = ?');
+      values.push(post.slug);
+    }
     if (post.title !== undefined) {
       fields.push('title = ?');
       values.push(post.title);
@@ -184,7 +188,7 @@ export const blogDb = {
     }
     if (post.published !== undefined) {
       fields.push('published = ?');
-      values.push(post.published);
+      values.push(post.published ? 1 : 0);
     }
 
     if (fields.length === 0) return false;
@@ -194,6 +198,24 @@ export const blogDb = {
 
     const stmt = db.prepare(`UPDATE posts SET ${fields.join(', ')} WHERE id = ?`);
     const result = stmt.run(...values);
+
+    // Handle tags if provided
+    if (post.tags !== undefined) {
+      // Delete existing tags for this post
+      db.prepare('DELETE FROM post_tags WHERE post_id = ?').run(id);
+
+      // Add new tags
+      if (post.tags.length > 0) {
+        const tagStmt = db.prepare('INSERT OR IGNORE INTO tags (name) VALUES (?)');
+        const linkStmt = db.prepare('INSERT INTO post_tags (post_id, tag_id) VALUES (?, ?)');
+
+        for (const tagName of post.tags) {
+          tagStmt.run(tagName);
+          const tag = db.prepare('SELECT id FROM tags WHERE name = ?').get(tagName) as { id: number };
+          linkStmt.run(id, tag.id);
+        }
+      }
+    }
 
     return result.changes > 0;
   },
