@@ -1,0 +1,96 @@
+/* Gruvbox Dark Theme for highlight.js */
+.hljs {
+  color: #ebdbb2;
+  background: #282828;
+}
+
+/* Base colors */
+.hljs-comment,
+.hljs-quote {
+  color: #928374;
+  font-style: italic;
+}
+
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-tag,
+.hljs-name,
+.hljs-regexp,
+.hljs-link,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #ebdbb2;
+}
+
+/* Constants */
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #d3869b;
+}
+
+.hljs-literal {
+  color: #d3869b;
+}
+
+/* Keywords */
+.hljs-keyword,
+.hljs-type {
+  color: #fb4934;
+}
+
+.hljs-string,
+.hljs-symbol {
+  color: #b8bb26;
+}
+
+/* Functions */
+.hljs-title,
+.hljs-class .hljs-title,
+.hljs-function .hljs-title {
+  color: #fe8019;
+}
+
+/* Operators */
+.hljs-params {
+  color: #ebdbb2;
+}
+
+.hljs-subst {
+  color: #ebdbb2;
+}
+
+.hljs-formula {
+  background-color: #3c3836;
+}
+
+.hljs-addition {
+  background-color: #4a4a4a;
+}
+
+.hljs-deletion {
+  background-color: #4a4a4a;
+}
+
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #fe8019;
+}
+
+.hljs-section {
+  color: #8ec07c;
+}
+
+.hljs-bullet {
+  color: #83a598;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}

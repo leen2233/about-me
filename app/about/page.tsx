@@ -1,15 +1,14 @@
-import { getPostBySlug } from './lib/posts';
-import MarkdownRenderer from './components/MarkdownRenderer';
+import { getPostBySlug } from '../lib/posts';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
-export default async function Home() {
-  // Load from content/index.md
-  const post = await getPostBySlug('index');
+export default async function AboutPage() {
+  const post = await getPostBySlug('about');
 
   if (!post) {
     return (
       <div>
-        <h1>Welcome</h1>
-        <p>No content found. Create content/index.md to see your home page.</p>
+        <h1>About</h1>
+        <p>No content found. Create content/about.md to see this page.</p>
       </div>
     );
   }

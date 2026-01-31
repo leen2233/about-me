@@ -1,26 +1,326 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Gruvbox Dark Color Scheme */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Primary Backgrounds */
+  --color-bg-hard: #1d2021;
+  --color-bg: #282828;
+  --color-bg0: #282828;
+  --color-bg1: #3c3836;
+  --color-bg2: #504945;
+  --color-bg3: #665c54;
+  --color-bg4: #7c6f64;
+
+  /* Foregrounds */
+  --color-fg: #ebdbb2;
+  --color-fg0: #fbf1c7;
+  --color-fg1: #ebdbb2;
+  --color-fg2: #d5c4a1;
+  --color-fg3: #bdae93;
+  --color-fg4: #a89984;
+
+  /* Status Line Colors */
+  --color-status-default-bg: #504945;
+  --color-status-default-fg: #EBDBB2;
+  --color-status-saved-bg: #84A598;
+  --color-status-modified-bg: #AA4542;
+
+  /* Accent Colors */
+  --color-red: #cc241d;
+  --color-red-bold: #fb4934;
+  --color-green: #98971a;
+  --color-green-bold: #b8bb26;
+  --color-yellow: #d79921;
+  --color-yellow-bold: #fabd2f;
+  --color-blue: #458588;
+  --color-blue-bold: #83a598;
+  --color-purple: #b16286;
+  --color-purple-bold: #d3869b;
+  --color-aqua: #689d6a;
+  --color-aqua-bold: #8ec07c;
+  --color-orange: #d65d0e;
+  --color-orange-bold: #fe8019;
+  --color-gray: #928374;
+  --color-gray-bold: #a89984;
+
+  /* Special */
+  --color-folder-arrow: #3FC5FF;
+
+  /* Typography */
+  --font-mono: 'Fira Code', 'JetBrains Mono', 'Roboto Mono', 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #282828;
+  --foreground: #ebdbb2;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #7c6f64 #282828;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #282828;
+  color: #ebdbb2;
+  font-family: 'Fira Code', 'JetBrains Mono', 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #282828;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7c6f64;
+  border-radius: 6px;
+  border: 2px solid #282828;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #928374;
+}
+
+::-webkit-scrollbar-corner {
+  background: #282828;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: 2em;
+  color: #8ec07c;
+  border-bottom: 1px solid #504945;
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  font-size: 1.75em;
+  color: #83a598;
+}
+
+h3 {
+  font-size: 1.5em;
+  color: #fabd2f;
+}
+
+h4 {
+  font-size: 1.25em;
+  color: #fe8019;
+}
+
+h5 {
+  font-size: 1.1em;
+  color: #d3869b;
+}
+
+h6 {
+  font-size: 1em;
+  color: #bdae93;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+strong, b {
+  color: #fbf1c7;
+  font-weight: 600;
+}
+
+em, i {
+  font-style: italic;
+  color: #bdae93;
+}
+
+/* Links */
+a {
+  color: #8ec07c;
+  text-decoration: none;
+  transition: color 150ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  color: #8ec07c;
+  border-bottom-color: #8ec07c;
+}
+
+a:visited {
+  color: #d3869b;
+}
+
+a:visited:hover {
+  color: #8ec07c;
+  border-bottom-color: #8ec07c;
+}
+
+/* Inline Code */
+code {
+  background: #504945;
+  color: #ebdbb2;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: 'Fira Code', monospace;
+  border: 1px solid #665c54;
+}
+
+/* Code Blocks */
+pre {
+  background: #282828;
+  border: 1px solid #504945;
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+  line-height: 1.4;
+  margin: 1em 0;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 3px solid #8ec07c;
+  padding-left: 1em;
+  margin-left: 0;
+  margin-bottom: 1em;
+  color: #bdae93;
+  font-style: italic;
+  background: #3c3836;
+  padding: 0.5em 1em;
+  border-radius: 0 4px 4px 0;
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
+
+/* Lists */
+ul {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  list-style-type: disc;
+}
+
+ul ul {
+  list-style-type: circle;
+}
+
+ul ul ul {
+  list-style-type: square;
+}
+
+ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  list-style-type: decimal;
+}
+
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+ol ol ol {
+  list-style-type: lower-roman;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+/* Horizontal Rule */
+hr {
+  border: none;
+  border-top: 1px solid #504945;
+  margin: 2em 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+th, td {
+  padding: 0.5em 1em;
+  border: 1px solid #504945;
+  text-align: left;
+}
+
+th {
+  background: #504945;
+  font-weight: 600;
+  color: #fbf1c7;
+}
+
+td {
+  background: #282828;
+}
+
+tr:hover td {
+  background: #3c3836;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="search"],
+textarea {
+  background: #3c3836;
+  color: #ebdbb2;
+  border: 1px solid #504945;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  width: 100%;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid #8ec07c;
+  border-color: transparent;
+}
+
+input::placeholder {
+  color: #a89984;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: #8ec07c;
+}
+
+/* Focus styles */
+button:focus,
+a:focus {
+  outline: none;
 }
