@@ -11,7 +11,7 @@ interface Tab {
 
 const tabs: Tab[] = [
   { id: '1', name: 'index.md', icon: '', path: '/' },
-  { id: '2', name: 'about.md', icon: '', path: '/about' },
+  { id: '2', name: 'projects.md', icon: '', path: '/projects' },
   { id: '3', name: 'work.md', icon: '', path: '/work' },
 ];
 
@@ -20,7 +20,7 @@ export default function TabBar() {
 
   const getDisplayName = (path: string) => {
     if (path === '/') return 'index.md';
-    if (path === '/about') return 'about.md';
+    if (path === '/projects') return 'projects.md';
     if (path === '/work') return 'work.md';
     if (path.startsWith('/posts')) {
       const parts = path.split('/').filter(Boolean);
