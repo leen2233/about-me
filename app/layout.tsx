@@ -6,6 +6,7 @@ import TabBar from "./components/TabBar";
 import Sidebar from "./components/Sidebar";
 import StatusBar from "./components/StatusBar";
 import { getFileTree } from "./lib/tree";
+import SidebarToggle from "./components/SidebarToggle";
 
 const firaCode = Fira_Code({
   variable: "--font-fira-code",
@@ -28,26 +29,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${firaCode.variable} antialiased`}>
-        <div className="flex flex-col h-screen overflow-hidden">
-          {/* Tab Bar */}
+        <SidebarToggle>
           <TabBar />
 
-          {/* Main Content Area */}
           <div className="flex flex-1 overflow-hidden">
-            {/* Sidebar */}
             <Sidebar fileTree={fileTree} />
 
-            {/* Main Content */}
             <main className="flex-1 overflow-y-auto">
-              <div className="p-5 max-w-none">
+              <div className="p-3 sm:p-5 max-w-none">
                 {children}
               </div>
             </main>
           </div>
 
-          {/* Status Bar */}
           <StatusBar />
-        </div>
+        </SidebarToggle>
       </body>
     </html>
   );

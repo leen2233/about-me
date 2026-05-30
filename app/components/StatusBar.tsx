@@ -48,7 +48,7 @@ export default function StatusBar() {
       </div>
 
       {/* Right section - additional info */}
-      <div className="flex items-center gap-4 px-3 text-[#EBDBB2]">
+      <div className="hidden sm:flex items-center gap-4 px-3 text-[#EBDBB2]">
         <span>utf-8</span>
         <span>markdown</span>
       </div>

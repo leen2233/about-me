@@ -15,6 +15,7 @@ import {
   Globe
 } from 'lucide-react';
 import type { FileNode } from '../lib/tree';
+import { useSidebar } from './SidebarToggle';
 
 interface SidebarProps {
   fileTree: FileNode[];
@@ -42,7 +43,7 @@ function getFileIcon(name: string): React.ReactNode {
   }
 }
 
-function FileTreeNode({ node, depth = 0 }: { node: FileNode; depth?: number }) {
+function FileTreeNode({ node, depth = 0, onNavigate }: { node: FileNode; depth?: number; onNavigate?: () => void }) {
   const [isExpanded, setIsExpanded] = useState(depth < 2);
   const pathname = usePathname();
   const isActive = node.path === pathname;
@@ -52,6 +53,8 @@ function FileTreeNode({ node, depth = 0 }: { node: FileNode; depth?: number }) {
     if (node.type === 'folder') {
       e.preventDefault();
       setIsExpanded(!isExpanded);
+    } else {
+      onNavigate?.();
     }
   };
 
@@ -97,7 +100,7 @@ function FileTreeNode({ node, depth = 0 }: { node: FileNode; depth?: number }) {
       {hasChildren && isExpanded && (
         <div>
           {node.children!.map((child) => (
-            <FileTreeNode key={child.path} node={child} depth={depth + 1} />
+            <FileTreeNode key={child.path} node={child} depth={depth + 1} onNavigate={onNavigate} />
           ))}
         </div>
       )}
@@ -106,25 +109,42 @@ function FileTreeNode({ node, depth = 0 }: { node: FileNode; depth?: number }) {
 }
 
 export default function Sidebar({ fileTree }: SidebarProps) {
-  return (
-    <aside
-      className={`
-        w-[35ch] h-full bg-[#282828] border-r border-[#504945]
-        overflow-y-auto flex-shrink-0
-      `}
-      aria-label="File navigation"
-    >
-      {/* Header */}
-      <div className="px-3 py-2 text-xs text-[#a89984] border-b border-[#504945]">
-        ~/projects/sp/blog/..
-      </div>
+  const { isOpen, close } = useSidebar();
 
-      {/* File tree */}
-      <nav className="py-1" aria-label="Content folders">
-        {fileTree.map((node) => (
-          <FileTreeNode key={node.path} node={node} />
-        ))}
-      </nav>
-    </aside>
+  return (
+    <>
+      {/* Mobile backdrop overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-30 md:hidden"
+          onClick={close}
+        />
+      )}
+
+      <aside
+        className={`
+          fixed top-0 left-0 z-40 h-full
+          w-[35ch] max-w-[80vw] bg-[#282828] border-r border-[#504945]
+          overflow-y-auto flex-shrink-0
+          transition-transform duration-200 ease-in-out
+          md:relative md:top-auto md:left-auto md:z-auto
+          md:translate-x-0
+          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        `}
+        aria-label="File navigation"
+      >
+        {/* Header */}
+        <div className="px-3 py-2 text-xs text-[#a89984] border-b border-[#504945]">
+          ~/projects/sp/blog/..
+        </div>
+
+        {/* File tree */}
+        <nav className="py-1" aria-label="Content folders">
+          {fileTree.map((node) => (
+            <FileTreeNode key={node.path} node={node} onNavigate={close} />
+          ))}
+        </nav>
+      </aside>
+    </>
   );
 }

@@ -196,8 +196,10 @@ pre {
   border-radius: 4px;
   padding: 1em;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   line-height: 1.4;
   margin: 1em 0;
+  max-width: 100%;
 }
 
 pre code {
@@ -268,6 +270,9 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 1em 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 th, td {

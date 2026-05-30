@@ -37,14 +37,14 @@ export default function TabBar() {
   };
 
   return (
-    <div className="flex items-center bg-[#3c3836] h-8 text-sm border-b border-[#504945]">
+    <div className="flex items-center bg-[#3c3836] h-8 text-sm border-b border-[#504945] overflow-x-auto">
       {/* Main tabs */}
       {tabs.map((tab) => (
         <button
           key={tab.id}
           className={`
             flex items-center gap-2 px-3 h-full border-r border-[#504945]
-            transition-colors duration-150
+            transition-colors duration-150 shrink-0
             ${tab.path === pathname
               ? 'bg-[#504945] text-[#ebdbb2]'
               : 'bg-[#3c3836] text-[#ebdbb2] hover:bg-[#504945]'
@@ -66,7 +66,7 @@ export default function TabBar() {
         <button
           className={`
             flex items-center gap-2 px-3 h-full border-r border-[#504945]
-            transition-colors duration-150
+            transition-colors duration-150 shrink-0
             bg-[#504945] text-[#ebdbb2]
           `}
         >
