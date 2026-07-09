@@ -15,8 +15,8 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Personal Blog - Neovim Theme",
-  description: "A personal blogging website with Neovim design",
+  title: "leen2233",
+  description: "Self-introduction personal website.",
 };
 
 export default function RootLayout({
@@ -36,9 +36,7 @@ export default function RootLayout({
             <Sidebar fileTree={fileTree} />
 
             <main className="flex-1 overflow-y-auto">
-              <div className="p-3 sm:p-5 max-w-none">
-                {children}
-              </div>
+              <div className="p-3 sm:p-5 max-w-none">{children}</div>
             </main>
           </div>
 
