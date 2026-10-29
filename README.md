@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# leen2233's website
 
-## Getting Started
+A static personal site styled as a vim/Gruvbox editor, built with a
+zero-dependency Node script. No frameworks, no runtime JS libraries —
+just plain HTML, CSS and ~1 KB of vanilla JavaScript per page.
 
-First, run the development server:
+## Structure
+
+- `build.mjs` — build script: reads markdown, fetches data, writes `site/`
+- `lib/md.mjs` — minimal markdown → HTML converter (with naive syntax highlighting)
+- `lib/data.mjs` — Hardcover + Last.fm API clients (successful responses cached to `.cache/`)
+- `lib/render.mjs` — HTML templates (editor chrome + pages)
+- `assets/` — `style.css` and `site.js` (copied verbatim into the output)
+- `serve.mjs` — tiny static server for previewing `site/`
+- `content/` — markdown source (pages, posts)
+
+## Usage
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build     # regenerate site/ (fetches fresh books/music data)
+npm run preview   # serve site/ at http://localhost:8787
+npm run dev       # rebuild automatically when content/lib/assets change
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deploy by pointing nginx/caddy at `site/` (pages use `dir/index.html`
+so clean URLs work on any static server). Refresh books/music data
+with a cron job — run `crontab -e` and add, for example:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```cron
+# refresh books/music data every hour
+0 * * * * cd ~/projects/sp/blog && node build.mjs >> ~/.cache/blog-build.log 2>&1
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Use `0 0 * * *` instead of `0 * * * *` for a daily refresh.
 
-## Learn More
+## Environment
 
-To learn more about Next.js, take a look at the following resources:
+`.env` (gitignored):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `HARDCOVER_API_KEY` — hardcover.app personal access token
+- `LASTFM_API_KEY`, `LASTFM_USERNAME` — Last.fm read API
+- `LASTFM_SHARED_SECRET` — only needed for write/auth API calls
+- `HARDCOVER_USER_ID` — optional override, otherwise resolved from the token
