@@ -6,6 +6,7 @@ import fs from 'fs';
 import path from 'path';
 import { mdToHtml } from './lib/md.mjs';
 import { getLibrary, getMusicData } from './lib/data.mjs';
+import { getGamesLibrary } from './lib/backloggd.mjs';
 import {
   layout,
   contentPage,
@@ -13,6 +14,7 @@ import {
   postsIndexPage,
   booksPage,
   musicPage,
+  gamesPage,
   dataErrorPage,
 } from './lib/render.mjs';
 
@@ -86,6 +88,7 @@ function getAllPosts() {
 // Virtual pages rendered by the app but not backed by content/*.md
 const virtualFiles = [
   { name: 'books.md', type: 'file', path: '/books/' },
+  { name: 'games.md', type: 'file', path: '/games/' },
   { name: 'music.md', type: 'file', path: '/music/' },
   { name: 'work.md', type: 'file', path: '/work/' },
 ];
@@ -176,6 +179,13 @@ try {
 } catch (err) {
   console.warn(`[music] ${err.message}`);
   render('music', '/music/', dataErrorPage('music', err.message), 'music');
+}
+
+try {
+  render('games', '/games/', gamesPage(await getGamesLibrary()), 'games');
+} catch (err) {
+  console.warn(`[games] ${err.message}`);
+  render('games', '/games/', dataErrorPage('games', err.message), 'games');
 }
 
 // static assets

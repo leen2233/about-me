@@ -9,6 +9,11 @@ just plain HTML, CSS and ~1 KB of vanilla JavaScript per page.
 - `build.mjs` — build script: reads markdown, fetches data, writes `site/`
 - `lib/md.mjs` — minimal markdown → HTML converter (with naive syntax highlighting)
 - `lib/data.mjs` — Hardcover + Last.fm API clients (successful responses cached to `.cache/`)
+- `lib/backloggd.mjs` — Backloggd scraper. Backloggd has no public API; the
+  script reads the public profile's game pages and solves the site's Anubis
+  proof-of-work challenge first. If Backloggd changes its bot protection this
+  may break — the last successful scrape is kept in `.cache/` and used as
+  fallback (see `BACKLOGGD_USER` in `.env`)
 - `lib/render.mjs` — HTML templates (editor chrome + pages)
 - `assets/` — `style.css` and `site.js` (copied verbatim into the output)
 - `serve.mjs` — tiny static server for previewing `site/`
@@ -40,4 +45,5 @@ Use `0 0 * * *` instead of `0 * * * *` for a daily refresh.
 - `HARDCOVER_API_KEY` — hardcover.app personal access token
 - `LASTFM_API_KEY`, `LASTFM_USERNAME` — Last.fm read API
 - `LASTFM_SHARED_SECRET` — only needed for write/auth API calls
+- `BACKLOGGD_USER` — backloggd.com username to scrape games from
 - `HARDCOVER_USER_ID` — optional override, otherwise resolved from the token
